@@ -3,14 +3,20 @@ import clsx from "clsx";
 
 import {
   Card,
+  CardActions,
   CardContent,
   CardMedia,
+  Collapse,
   Grid,
+  IconButton,
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { currencyFormatter } from "@utils/currency";
 import ProductRating from "@common/components/ProductRating";
+import { useState } from "react";
+import transitions from "@material-ui/core/styles/transitions";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
   productInfo: {
     marginTop: theme.spacing(2),
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    transitions: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
   },
 }));
 
@@ -38,6 +53,12 @@ const ProductDetailCard = ({
   promo,
 }) => {
   const classes = useStyles();
+
+  const [expanded, setExpanded] = useState(true);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
     <div className={classes.container}>
@@ -126,6 +147,31 @@ const ProductDetailCard = ({
             </Grid>
           </Grid>
         </CardContent>
+
+        <CardActions>
+          <Grid container justifyContent="center" alignItems="center">
+            <IconButton
+              onClick={handleExpandClick}
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </Grid>
+        </CardActions>
+
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph variant="subtitle2">
+              Deskripsi
+            </Typography>
+
+            <Typography paragraph variant="body2">
+              {description}
+            </Typography>
+          </CardContent>
+        </Collapse>
       </Card>
     </div>
   );
