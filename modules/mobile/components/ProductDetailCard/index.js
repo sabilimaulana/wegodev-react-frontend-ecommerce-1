@@ -17,6 +17,7 @@ import ProductRating from "@common/components/ProductRating";
 import { useState } from "react";
 import transitions from "@material-ui/core/styles/transitions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PromoCard from "@common/components/PromoCard";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -173,6 +174,8 @@ const ProductDetailCard = ({
           </CardContent>
         </Collapse>
       </Card>
+
+      <PromoCard promo={promo} />
     </div>
   );
 };
