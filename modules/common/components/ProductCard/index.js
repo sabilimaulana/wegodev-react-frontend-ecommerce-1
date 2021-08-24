@@ -44,28 +44,30 @@ const ProductCard = ({
   const classes = useStyles();
 
   return (
-    <Card>
-      <div className={classes.card}>
-        <div className={classes.relative}>
-          <CardMedia className={classes.image} image={img} title={title} />
-          <div className={classes.promoLabel}>
-            <PromoLabel promoLabel={promoLabel} />
+    <Link href="product/[id]" as={`product/${productID}`}>
+      <Card>
+        <div className={classes.card}>
+          <div className={classes.relative}>
+            <CardMedia className={classes.image} image={img} title={title} />
+            <div className={classes.promoLabel}>
+              <PromoLabel promoLabel={promoLabel} />
+            </div>
           </div>
-        </div>
-        <CardContent>
-          <Grid container direction="column">
-            <Typography gutterBottom variant="subtitle2" component="h2">
-              {title}
-            </Typography>
+          <CardContent>
+            <Grid container direction="column">
+              <Typography gutterBottom variant="subtitle2" component="h2">
+                {title}
+              </Typography>
 
-            <Typography variant="overline" className={classes.price}>
-              {currencyFormatter(price)}
-            </Typography>
-            <ProductRating rating={rating} sold={sold} />
-          </Grid>
-        </CardContent>
-      </div>
-    </Card>
+              <Typography variant="overline" className={classes.price}>
+                {currencyFormatter(price)}
+              </Typography>
+              <ProductRating rating={rating} sold={sold} />
+            </Grid>
+          </CardContent>
+        </div>
+      </Card>
+    </Link>
   );
 };
 

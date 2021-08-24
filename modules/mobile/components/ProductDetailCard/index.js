@@ -18,6 +18,7 @@ import { useState } from "react";
 import transitions from "@material-ui/core/styles/transitions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PromoCard from "@common/components/PromoCard";
+import ProductInfoPanel from "@common/components/ProductInfoPanel";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -176,6 +177,7 @@ const ProductDetailCard = ({
       </Card>
 
       <PromoCard promo={promo} />
+      <ProductInfoPanel />
     </div>
   );
 };
